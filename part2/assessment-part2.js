@@ -44,7 +44,13 @@ function noWeakLink() {
     url: '/api/users'
   })
   // CODE HERE...
-
+.then(res=>{
+  firstUser = res.data[0]
+  return res
+}).then(res=>{
+  thirdUser = res.data[2]
+  return res.data[9]
+})
 }
 
 
@@ -74,7 +80,7 @@ function large() {
   return 'My name is ' + this.name + ' and I am very heavy!'
 }
 // CODE HERE...
-
+var boundToElephant = large.bind(elephant)
 
 
 // *************
@@ -88,7 +94,10 @@ function large() {
 // and return the bound function.
 
 // CODE HERE...
-
+function deathStar(cap, crew) {
+  var bound = cap.bind(crew)
+  return bound
+}
 
 
 // *************
@@ -104,7 +113,11 @@ function large() {
 
 // CODE HERE...
 
-
+function accountingOffice(assets) {
+  return function (lia) {
+    return assets + lia
+  }
+}
 
 // *************
 // * PROBLEM 5 *
@@ -128,7 +141,16 @@ function large() {
 // };
 
 // CODE HERE...
-
+function forgetter(name) {
+  var remember = []
+  return function rememberall(item) {
+    remember.push(item)
+    return {
+      name: name,
+      remember: remember
+    }
+  }
+}
 
 
 // *************
@@ -156,3 +178,54 @@ function large() {
 // NOTE: Neither hunger nor danger should be able to exceed 100 or drop below 0.
 
 // CODE HERE...
+function frodo(num1, num2) {
+  var hunger = num1
+  var danger = num2
+  return {
+    dinnerOverFire: function () {
+      if (hunger > 0) {
+        hunger -= 25
+        if (hunger < 0) {
+          hunger = 0
+        }
+      } else {
+        hunger = 0
+      }
+      if (danger < 100) {
+        danger += 40
+        if (danger > 100) {
+          danger = 100
+        }
+      } else {
+        danger = 100
+      }
+      return {
+        hunger: hunger,
+        danger: danger
+      }
+    },
+    hidingInBush: function () {
+      if (hunger < 100) {
+        hunger += 25
+        if (hunger > 100) {
+          hunger = 100
+        }
+      } else {
+        hunger = 100
+      }
+      if (danger > 0) {
+        danger -= 20
+        if (danger < 0) {
+          danger = 0
+        }
+      } else {
+        danger = 0
+      }
+      return {
+        hunger: hunger,
+        danger: danger
+      }
+    }
+
+  }
+}

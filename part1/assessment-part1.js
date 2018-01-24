@@ -7,20 +7,20 @@
 
 // Given the following nested functions:
 
-function daBears(){
+function daBears() {
   var isFurry = true;
 
-  function papaBear (){
+  function papaBear() {
     var porridge = "Too Hot!";
     var chair = "Too Big!";
     var bed = "Too Hard!";
     var feeling = "Angry";
 
-    function mamaBear(){
+    function mamaBear() {
       var porridge = "Too Cold!";
       var bed = "Too Soft!";
 
-      function babyBear(){
+      function babyBear() {
         var porridge = "Just right!";
         var chair = "Just right!";
         var bed = "Just right!";
@@ -30,7 +30,7 @@ function daBears(){
     }
   }
 
-  function goldilocks(){
+  function goldilocks() {
     var feeling = "Hungry";
     var isFurry = false;
     var isDinner = true;
@@ -43,27 +43,27 @@ function daBears(){
 // Which function(s) access the "chair" variable and get "Too Big!"
 // (Delete wrong answers, leave correct ones)
 
-var fairyTale1 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
+var fairyTale1 = ["papaBear", "mamaBear"];
 
 // Which function(s) access the "feeling" variable and get "Hungry"
 // (Delete wrong answers, leave correct ones)
 
-var fairyTale2 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
+var fairyTale2 = ["goldilocks"];
 
 // Which function(s) access the "porridge" variable and get "Too Cold!"
 // (Delete wrong answers, leave correct ones)
 
-var fairyTale3 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
+var fairyTale3 = ["mamaBear"];
 
 // Which function(s) access the "sleepy" variable and get undefined
 // (Delete wrong answers, leave correct ones)
 
-var fairyTale4 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
+var fairyTale4 = ["daBears", "papaBear", "mamaBear", "goldilocks"];
 
 // Which function(s) access the isFurry variable and get true
 // (Delete wrong answers, leave correct ones)
 
-var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
+var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear"];
 
 
 // *************
@@ -82,9 +82,18 @@ var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
 // "charger" once, and invoke it twice on "mustang".
 
 // CODE HERE...
+function Vehicle() {
+  this.gasRemaining = 100;
+}
+Vehicle.prototype.drive = function () {
+  this.gasRemaining -= 25;
+}
 
-
-
+var charger = new Vehicle();
+var mustang = new Vehicle();
+charger.drive();
+mustang.drive();
+mustang.drive();
 
 
 // -----------------------------------------------------------------------------
@@ -108,7 +117,19 @@ var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
 
 
 // CODE HERE...
+String.prototype.grammarPolice = function () {
+  var upper = []
+  var rest = []
+  var answer = []
+  var newSen = this.toLowerCase().split(' ')
 
+  for (var x = 0; x < newSen.length; x += 1) {
+    upper = newSen[x].charAt(0).toUpperCase()
+    rest = newSen[x].replace(/\w/, upper)
+    answer.push(rest)
+  }
+  return answer.join(' ')
+}
 
 
 // *************
@@ -126,7 +147,15 @@ var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
 // In all other cases, return "Different values"
 
 // CODE HERE...
-
+function valueType(par1, par2) {
+  if ((typeof par1 !== typeof par2) && (par1 == par2)) {
+    return "Same value, different types"
+  } else if ((typeof par1 === typeof par2) && (par1 === par2)) {
+    return "Exactly the same"
+  } else {
+    return "Different values"
+  }
+}
 
 
 // *************
@@ -141,3 +170,7 @@ var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
 var theAnswer = "Unknown";
 
 // CODE HERE...
+function promiseCatcher(par1) {
+  par1.then(theAnswer = par1)
+return theAnswer
+}
