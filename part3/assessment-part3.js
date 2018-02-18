@@ -13,7 +13,10 @@
 // return the result of your updateAnimal invocation
 
 // CODE HERE...
-
+function callBinding(arr, cb, num) {
+    var ans = arr.indexOf(num)
+    return cb('Trogdor')
+}
 
 
 // *************
@@ -28,7 +31,15 @@
 // return the result of your updateAnimal invocation
 
 // CODE HERE...
-
+function applyBinding(arr, cb, num) {
+    var arr2 = ['being majestic', 'eating rainbows']
+    for(var x= 0; x<arr.length;x+=1){
+        if(arr[x].id === num){
+           var result = cb.apply(arr[x], arr2)
+        }
+    } 
+    return result
+}
 
 
 // *************
@@ -48,7 +59,15 @@
 var foo;
 
 // CODE HERE...
-
+function promiseMe($q) {
+    var foo = new Promise(function (resolve, reject) {
+        setTimeout(resolve, 20, 'bar')
+    })
+    // setTimeout(function () {
+    //     foo = 'bar'
+    // }, 20)
+    return foo
+}
 
 
 // *************
@@ -64,3 +83,18 @@ var foo;
 // and then resolve the array as you complete your promise.
 
 // CODE HERE...
+function emailList($q, $http) {
+    var arr = []
+    var data = new Promise(function (resolve, reject) {
+    setTimeout(resolve, 1000, $http.get('/api/users'))
+    }).then(function (value) {
+        // for (var x = 0; x < value.length; x += 1) {
+        //     arr.push(value[x].email)
+        // } 
+        for(var x=0; x<value.data.length; x+=1){
+            arr.push(value.data[x].email)
+        }
+       return arr      
+    })
+     return data
+}
